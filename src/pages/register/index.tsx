@@ -4,6 +4,7 @@ import { MdEmail, MdLock, MdPerson } from 'react-icons/md';
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { IFormRegister } from './types';
 
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
@@ -23,6 +24,7 @@ import { Container,
          DivTerms
     } from './styles';
 
+
     const schema = yup.object({
         email: yup.string().email('email não e valido').required('Campo obrigatorio'),
         password: yup.string().min(3, "No minimo 3 caracteres").required('No minimo 3 caracteres'),
@@ -35,7 +37,7 @@ const Register = () => {
     const navigate = useNavigate();
 
 
-    const { control, handleSubmit, formState: { errors, isValid } } = useForm({
+    const { control, handleSubmit, formState: { errors, isValid } } = useForm<IFormRegister>({
         resolver: yupResolver(schema),
         mode: 'onChange',
     });
@@ -43,9 +45,9 @@ const Register = () => {
     console.log(isValid, errors);
 
 
-    const onSubmit = async FormData => {
+    const onSubmit = async (FormData: IFormRegister) => {
         try {
-            const { data } = await api.post(`users?name=${FormData.name}&email=${FormData.email}&senha=${FormData.passwor}`)
+            const { data } = await api.post(`users?name=${FormData.name}&email=${FormData.email}&senha=${FormData.password}`)
             if(data.length == 1){
                 navigate('/login')
             }else {

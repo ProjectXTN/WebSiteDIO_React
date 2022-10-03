@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../../assets/logo.png'
 import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
+import { IHeader } from './types'
 
 
 import {
@@ -16,7 +17,7 @@ import {
     UserPicture
 } from './styles'
 
-const Header = ({autenticado}) => {
+const Header = ({autenticado}: IHeader) => {
 
     const navigate = useNavigate();
 
