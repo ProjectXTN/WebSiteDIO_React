@@ -7,8 +7,9 @@ import { UserInfo } from '../../components/UserInfo';
 import { Container, Column, Title, TitleHighLight } from './styles';
 
 const Feed = () => {
+
     return(<>
-        <Header autenticado={true}/>
+        <Header/>
         <Container>
             <Column flex={3}>
                 <Title>Feed</Title>

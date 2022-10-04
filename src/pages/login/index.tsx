@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 
+
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
@@ -21,15 +22,18 @@ import { Column,
         Wrapper,
         } from './styles';
 
-import { api } from '../../pages/services/api';
-import { IFormData } from './types';
 
-        const schema = yup.object({
-            email: yup.string().email('email não e valido').required('Campo obrigatorio'),
-            password: yup.string().min(3, "No minimo 3 caracteres").required('No minimo 3 caracteres'),
-          }).required();
+import { IFormData } from './types';
+import { useAuth } from '../../components/hooks/useAuth';
+
+    const schema = yup.object({
+        email: yup.string().email('email não e valido').required('Campo obrigatorio'),
+        password: yup.string().min(3, "No minimo 3 caracteres").required('No minimo 3 caracteres'),
+        }).required();
 
 const Login = () => {
+
+    const { handleLogin } = useAuth();
 
     const navigate = useNavigate();
 
@@ -46,16 +50,7 @@ const Login = () => {
     }
 
     const onSubmit = async (formData: IFormData) => {
-        try {
-            const { data } = await api.get(`users?email=${formData.email}&senha=${formData.password}`)
-            if(data.length == 1){
-                navigate('/feed')
-            }else {
-                alert('Email ou senha invalido')
-            }
-        } catch {
-            alert('Houve um erro');
-        }
+        handleLogin(formData);
     };
 
     return(<>

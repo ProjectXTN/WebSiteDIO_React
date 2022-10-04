@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const Container = styled.div`
     width:100%;
     max-width: 80%;
@@ -16,6 +17,7 @@ export const Row = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+
 `
 
 export const Column = styled.div`
@@ -78,6 +80,7 @@ export const UserPicture = styled.img`
     height: 32px;
     border-radius: 22px;
     border: 2px solid #FFFFFF;
+    margin-right: 15px;
 `
 
 export const Input = styled.input`
@@ -90,4 +93,13 @@ export const Input = styled.input`
 export const Img = styled.img`
     width: 7%;
     cursor:pointer;
+`
+
+export const A = styled.a`
+    color: #FFFFFF;
+    text-decoration: none;
+
+    &:hover{
+        color: #F0FF00;
+    }
 `
