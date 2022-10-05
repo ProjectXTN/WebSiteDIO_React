@@ -1,6 +1,7 @@
 {
   "name": "next-app",
   "version": "0.1.0",
+  "homepage" : "https://projectxtn.github.io/website-dio-react-typescript",
   "private": true,
   "scripts": {
     "dev": "next dev",
